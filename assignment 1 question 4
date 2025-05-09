@@ -1,0 +1,80 @@
+
+#include<iostream>
+using namespace std;
+int main(){
+    int n;
+    cout<<"Size of Matrix : ";
+    cin>>n;
+    int minr=0,minc=0,maxr=n-1,maxc=n-1;
+    int count=0;
+    int arr[n][n];
+    int spr[n][n];
+
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {   
+            cout<<"Value at ["<<i<<"]["<<j<<"] :" ;
+            cin>>arr[i][j];
+        }
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<" ["<<arr[i][j]<<"] ";
+        }
+        cout<<endl;
+    }
+
+       cout<<endl;
+    cout<<"     ||"<<endl;
+    cout<<"     ||"<<endl;
+    cout<<"     ||      Converting to Spiral "<<endl;
+    cout<<"    _||_"<<endl;
+    cout<<"    \\  /"<<endl;
+    cout<<"     \\/"<<endl<<endl;
+    
+    while(count<n*n){
+        for(int i=minc;i<=maxc;i++){
+            spr[minr][i]=arr[count/n][count%n]; 
+            count++;  
+        }
+        minr++;
+         if(count>=n*n){
+            break;
+        }
+        for(int i=minr;i<=maxr;i++){
+       spr[i][maxc]=arr[count/n][count%n];
+            count++;
+        }
+        maxc--;
+         if(count>=n*n){
+            break;
+        }
+        for(int i=maxc;i>=minc;i--){
+            spr[maxr][i]=arr[count/n][count%n];
+            count++;
+        }
+        maxr--; 
+        if(count>=n*n){
+            break;
+        }
+        for(int i=maxr;i>=minr;i--){
+            spr[i][minc]=arr[count/n][count%n];
+            count++;
+        }
+        minc++;
+         if(count>=n*n){
+            break;
+        }
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<" ["<<spr[i][j]<<"] ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
